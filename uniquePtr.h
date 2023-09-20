@@ -59,4 +59,10 @@ class UP{
 	T* ptr_;
 	DD defaultDeleter;
 };
+
+template <typename T, typename ...ArgsPack>
+UP<T> MakeUnique(ArgsPack&& ...args) {
+	return UP<T>(new T(std::forward<ArgsPack>(args)...));
+}
+
 #endif
